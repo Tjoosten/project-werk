@@ -27,14 +27,6 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
-                    @if (auth()->guest())
-                        <li class="nav-item">
-                            <a href="{{ route('disclaimer.index') }}" class="nav-link">
-                                <i class="fa fa-legal"></i> Disclaimer
-                            </a>
-                        </li>
-                    @endif
-
                     @if (auth()->check() && auth()->user()->hasRole('admin'))
                         <li class="nav-item @if (Request::is('admin/users*')) active @endif ">
                             <a href="{{ route('admin.users.index') }}" class="nav-link">
