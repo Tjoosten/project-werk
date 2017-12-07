@@ -15,15 +15,14 @@ Route::get('/', function () {
     return view('frontend.welcome');
 });
 
-Route::get('email', function () {
-    return new \ActivismeBe\Mail\EmailNewUser('', '');
-});
-
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Frontend
 Route::get('/disclaimer', 'DisclaimerController@index')->name('disclaimer.index');
+
+// Logs routes
+Route::get('/admin/logs', 'LogsController@index')->name('admin.logs.index');
 
 // User routes
 Route::get('/admin/users/index', 'usersController@index')->name('admin.users.index');

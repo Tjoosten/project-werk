@@ -41,6 +41,12 @@
                                 <i class="fa fa-users"></i> Gebruikers
                             </a>
                         </li>
+
+                        <li class="nav-item @if (Request::is('admin/logs*')) active @endif">
+                            <a href="{{ route('admin.logs.index') }}" class="nav-link">
+                                <i class="fa fa-list"></i> Logs
+                            </a>
+                        </li>
                     @endif
                 </ul>
 
