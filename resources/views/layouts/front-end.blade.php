@@ -35,7 +35,7 @@
                         </li>
                     @endif
 
-                    @if (auth()->check())
+                    @if (auth()->check() && auth()->user()->hasRole('admin'))
                         <li class="nav-item @if (Request::is('admin/users*')) active @endif ">
                             <a href="{{ route('admin.users.index') }}" class="nav-link">
                                 <i class="fa fa-users"></i> Gebruikers

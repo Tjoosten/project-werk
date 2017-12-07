@@ -1,8 +1,9 @@
 @extends('layouts.front-end')
 
 @section('content')
-    <div class="container">
-        <div class="row my-4">
+    <div class="container my-4">
+        @include('flash::message')
+        <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">Dashboard</div>
