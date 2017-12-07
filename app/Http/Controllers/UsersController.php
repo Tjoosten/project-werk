@@ -25,7 +25,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function create(PermissionRepository $permissionRepository, RoleRepository $roleRepository): View
+    public function create(RoleRepository $roleRepository): View
     {
         return view('backend.users.create', ['roles' => $roleRepository->all()]);
     }
@@ -38,8 +38,10 @@ class UsersController extends Controller
         if ($user->delete()) {
             flash("{$user->name} is verwijderd uit het platform.")->success();
 
-            activity()->performedOn($user)->causedBy(auth()->user())
-                ->log("Heeft {$user->name} verwijderd uit het systeem.");
+            if (auth()->user()->hasRole('admin')) {
+                activity()->performedOn($user)->causedBy(auth()->user())
+                    ->log("Heeft {$user->name} verwijderd uit het systeem.");
+            }
         }
 
         return redirect()->route('admin.users.index');
