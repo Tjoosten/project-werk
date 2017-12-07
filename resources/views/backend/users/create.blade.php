@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="POST" id="create-user" action="{{ route('admin.users.store') }}">
                             {{ csrf_field() }} {{-- Form field protection --}}
 
                             <div class="form-group row">
@@ -78,7 +78,7 @@
 
                     <div class="card-footer">
                         <span class="pull-right">
-                            <button class="btn btn-sm btn-success">
+                            <button type="submit" form="create-user" class="btn btn-sm btn-success">
                                 <i class="fa fa-check"></i> Opslaan
                             </button>
 

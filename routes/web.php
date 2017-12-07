@@ -25,3 +25,4 @@ Route::get('/disclaimer', 'DisclaimerController@index')->name('disclaimer.index'
 Route::get('/admin/users/index', 'usersController@index')->name('admin.users.index');
 Route::get('/admin/gebruiker/nieuw', 'usersController@create')->name('admin.users.create');
 Route::get('/admin/gebruiker/verwijder/{id}', 'usersController@destroy')->name('admin.users.delete');
+Route::post('/admin/gebruiker/opslaan', 'usersController@store')->name('admin.users.store');
