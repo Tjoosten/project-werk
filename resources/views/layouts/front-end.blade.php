@@ -63,9 +63,15 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a href="{{ route('logout') }}" class="dropdown-item"
-                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    Logout
+                                <a href="" class="dropdown-item">
+                                    <i class="fa fa-fw fa-cogs"></i> Instellingen
+                                </a>
+                                <a href="" class="dropdown-item">
+                                    <i class="fa fa-fw fa-bug"></i> Meld een probleem
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-fw fa-power-off"></i> Afmelden
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"

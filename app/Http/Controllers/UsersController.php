@@ -38,6 +38,7 @@ class UsersController extends Controller
         $input->merge(['password' => bcrypt($password)]);
 
         if ($user = $this->userRepository->create($input->all())) {
+            $user->assignRole($input->role);
             $user->notify((new NewUser($user, $password))->delay(Carbon::now()->addMinute(1)));
 
             flash("Er is een login aangemaakt voor {$user->name}")->success();
