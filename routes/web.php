@@ -20,3 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Frontend
 Route::get('/disclaimer', 'DisclaimerController@index')->name('disclaimer.index');
+
+// User routes
+Route::get('/admin/users/index', 'usersController@index')->name('admin.users.index');
+Route::get('/admin/gebruiker/nieuw', 'usersController@create')->name('admin.users.create');
+Route::get('/admin/gebruiker/verwijder/{id}', 'usersController@destroy')->name('admin.users.delete');

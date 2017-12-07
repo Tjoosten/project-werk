@@ -1,6 +1,5 @@
 // Shared vendor packages.
 @import "~font-awesome/scss/font-awesome";
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Hand written scss code
 .content {
@@ -10,4 +9,8 @@
 .card {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
   border-radius: 4px;
+}
+
+.breadcrumb {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
 }
