@@ -27,11 +27,21 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="{{ route('disclaimer.index') }}" class="nav-link">
-                            <i class="fa fa-legal"></i> Disclaimer
-                        </a>
-                    </li>
+                    @if (auth()->guest())
+                        <li class="nav-item">
+                            <a href="{{ route('disclaimer.index') }}" class="nav-link">
+                                <i class="fa fa-legal"></i> Disclaimer
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->check())
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fa fa-users"></i> Gebruikers
+                            </a>
+                        </li>
+                    @endif
                 </ul>
 
                 <ul class="navbar-nav">

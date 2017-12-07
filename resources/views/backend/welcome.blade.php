@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.front-end')
 
 @section('content')
     <div class="container">
-        <div class="row mt-5">
+        <div class="row my-4">
             <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-header">Dashboard</div>
