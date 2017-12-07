@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('frontend.welcome');
 });
 
+Route::get('email', function () {
+    return new \ActivismeBe\Mail\EmailNewUser('', '');
+});
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 

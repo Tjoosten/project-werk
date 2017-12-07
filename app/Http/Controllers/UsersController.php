@@ -3,11 +3,11 @@
 namespace ActivismeBe\Http\Controllers;
 
 use ActivismeBe\Http\Requests\Backend\UserValidator;
-use ActivismeBe\Repositories\PermissionRepository;
+use ActivismeBe\Notifications\NewUser;
 use ActivismeBe\Repositories\RoleRepository;
 use ActivismeBe\Repositories\UserRepository;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UsersController extends Controller
@@ -38,6 +38,8 @@ class UsersController extends Controller
         $input->merge(['password' => bcrypt($password)]);
 
         if ($user = $this->userRepository->create($input->all())) {
+            $user->notify((new NewUser($user, $password))->delay(Carbon::now()->addMinute(1)));
+
             flash("Er is een login aangemaakt voor {$user->name}")->success();
 
             activity('acl-activities')->performedOn($user)->causedBy($input->user())
