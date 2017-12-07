@@ -5,7 +5,7 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Reset Password</div>
+                <div class="card-header">Reset uw wachtwoord:</div>
                 <div class="card-body">
                     <form role="form" method="POST" action="{{ url('/password/reset') }}">
                         {!! csrf_field() !!}
@@ -13,7 +13,7 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail Address</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail Adres</label>
 
                             <div class="col-lg-6">
                                 <input
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Password</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Wachtwoord</label>
 
                             <div class="col-lg-6">
                                 <input
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Confirm Password</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Wachtwoord bevestiging</label>
                             <div class="col-lg-6">
                                 <input
                                         type="password"
@@ -66,7 +66,7 @@
                         <div class="form-group row">
                             <div class="col-lg-6 offset-lg-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Reset Password
+                                    <i class="fa fa-check"></i> Reset wachtwoord
                                 </button>
                             </div>
                         </div>
