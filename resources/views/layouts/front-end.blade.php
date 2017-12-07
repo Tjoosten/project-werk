@@ -15,7 +15,7 @@
 </head>
 <body class="content">
 <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -26,6 +26,14 @@
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ route('disclaimer.index') }}" class="nav-link">
+                            <i class="fa fa-legal"></i> Disclaimer
+                        </a>
+                    </li>
+                </ul>
+
                 <ul class="navbar-nav">
                     @if (Auth::guest())
                         <li class="nav-item">
