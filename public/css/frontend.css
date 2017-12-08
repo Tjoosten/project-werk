@@ -14004,3 +14004,23 @@ footer .form-control {
           box-shadow: 0 0 0 0.2rem rgba(37, 211, 102, 0.5);
 }
 
+.plan-bronze {
+  color: #cd7f32;
+  text-shadow: 1px 1px 2px #dca570;
+}
+
+.plan-silver {
+  color: #c0c0c0;
+  text-shadow: 1px 1px 2px #e6e6e6;
+}
+
+.plan-gold {
+  color: #FFD700;
+  text-shadow: 1px 1px 2px #ffe34d;
+}
+
+.plan-diamond {
+  color: #b9f2ff;
+  text-shadow: 1px 1px 2px #d3f7ff;
+}
+
