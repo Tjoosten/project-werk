@@ -118,11 +118,6 @@
                             </h4>
                             <small>- Een gift van 22 euro.</small>
                         </a>
-
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield"></i> Vrije bijdrage.</h4>
-                            <small>- Een gift naar keuze.</small>
-                        </a>
                     </div>
                 </div>
             </div> {{-- /END social media --}}
