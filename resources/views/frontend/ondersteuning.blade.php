@@ -15,8 +15,13 @@
             <div class="col-8"> {{-- Content --}}
                 <div class="mb-4 card br-card card-shadow">
                     <img class="card-img-top" style="border-top-left-radius: 5px; border-top-right-radius: 5px;" height="200" src="{{ asset('img/banner.jpg') }}" alt="Card image cap">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title  text-right text-white">
+                            Ondersteun de werking van Activisme_BE
+                        </h3>
+                    </div>
                     <div class="card-body">
-                        <h3>Ondersteun de werking van Activisme_BE</h3>
+                        {{-- <h3>Ondersteun de werking van Activisme_BE</h3> --}}
 
                         <p>
                             Met ons klein team dat opkomt voor wereldvrede en de rechten van de mens, gebruiken
@@ -91,7 +96,33 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield"></i> Brons</h4>
+                            <small>- Een gift van 7 euro.</small>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield"></i> Zilver</h4>
+                            <small>- Een gift van 12 euro.</small>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield"></i> Goud</h4>
+                            <small>- Een gift van 17 euro.</small>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h4 class="mb-0 font-weight-bold">
+                                <i class="fa fa-fw fa-shield" style="text-shadow: 0.50px 0.50px 0.50px #ff0084;"></i> Diamant
+                            </h4>
+                            <small>- Een gift van 22 euro.</small>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield"></i> Vrije bijdrage.</h4>
+                            <small>- Een gift naar keuze.</small>
+                        </a>
                     </div>
                 </div>
             </div> {{-- /END social media --}}
