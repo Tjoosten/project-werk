@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-3">Activisme_BE Disclaimer,</h1>
+            <h1 class="display-3"><i class="icon-jumbotron fa fa-legal"></i> Activisme_BE Disclaimer,</h1>
             <p class="lead">
                 Laast aangepast op 20/10/2017
             </p>

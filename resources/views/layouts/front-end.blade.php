@@ -41,13 +41,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('visie.index') }}" class="nav-link @if (Request::is('visie*')) active @endif">
                                 <i class="fa fa-list"></i> Onze visie
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('ondersteuning.index') }}" class="nav-link @if(Request::is('ondersteun-ons*')) active @endif">
                                 <i class="fa fa-heart"></i> Ondersteun ons
                             </a>
                         </li>
@@ -140,8 +140,8 @@
                         <div class="col-6">
                             <ul class="list-unstyled">
                                 <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="">Onze Visie</a></li>
-                                <li><a href="">Ondersteun ons</a></li>
+                                <li><a href="{{ route('visie.index') }}">Onze Visie</a></li>
+                                <li><a href="{{ route('ondersteuning.index') }}">Ondersteun ons</a></li>
                                 <li><a href="{{ route('disclaimer.index') }}">Disclaimer</a></li>
                             </ul>
                         </div>

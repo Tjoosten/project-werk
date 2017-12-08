@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Frontend
 Route::get('/disclaimer', 'DisclaimerController@index')->name('disclaimer.index');
+Route::get('/visie', 'Frontend\VisieController@index')->name('visie.index');
 
 // Logs routes
 Route::get('/admin/logs', 'LogsController@index')->name('admin.logs.index');
@@ -29,6 +30,9 @@ Route::get('/admin/users', 'usersController@index')->name('admin.users.index');
 Route::get('/admin/gebruiker/nieuw', 'usersController@create')->name('admin.users.create');
 Route::get('/admin/gebruiker/verwijder/{id}', 'usersController@destroy')->name('admin.users.delete');
 Route::post('/admin/gebruiker/opslaan', 'usersController@store')->name('admin.users.store');
+
+// Crowdfund routes
+Route::get('ondersteun-ons', 'Frontend\CrowdfundController@index')->name('ondersteuning.index');
 
 // Article routes (backend)
 Route::get('/admin/artikels', 'Backend\ArticleController@index')->name('admin.articles.index');
