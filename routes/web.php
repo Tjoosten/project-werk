@@ -31,5 +31,11 @@ Route::get('/admin/gebruiker/verwijder/{id}', 'usersController@destroy')->name('
 Route::post('/admin/gebruiker/opslaan', 'usersController@store')->name('admin.users.store');
 
 // Article routes (backend)
-Route::get('admin/artikels', 'Backend\ArticleController@index')->name('admin.articles.index');
-Route::get('admin/artikels/nieuw', 'Backend\ArticleController@create')->name('admin.articles.create');
+Route::get('/admin/artikels', 'Backend\ArticleController@index')->name('admin.articles.index');
+Route::get('/admin/artikels/nieuw', 'Backend\ArticleController@create')->name('admin.articles.create');
+Route::post('/admin/artikels/store', 'Backend\ArticleController@store')->name('admin.articles.store');
+Route::get('/admin/artikels/wijzig/{id}', 'Backend\ArticleController@edit')->name('admin.articles.edit');
+Route::get('/admin/artikels/verwijder/{id}', 'Backend\ArticleController@delete')->name('admin.articles.delete');
+
+// Article status routes
+Route::get('admin/article/status/{article}/{status}', 'backend\ArticleStatusController@update')->name('admin.status.change');

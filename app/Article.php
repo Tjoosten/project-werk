@@ -4,16 +4,24 @@ namespace ActivismeBe;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\MediaLibrary\Media;
 use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Article extends Model implements HasMediaConversions
 {
     use HasMediaTrait, HasSlug;
 
     protected $fillable = ['slug', 'publish_date', 'is_published', 'title', 'message', 'author_id'];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'publish_date'
+    ];
 
     public function author(): BelongsTo
     {
@@ -26,7 +34,8 @@ class Article extends Model implements HasMediaConversions
         $this->addMediaConversion('thumb-image')
             ->width(750)
             ->height(300)
-            ->optimize();
+            ->optimize()
+            ->performOnCollections('images');;
     }
 
     public function getSlugOptions() : SlugOptions
@@ -35,5 +44,10 @@ class Article extends Model implements HasMediaConversions
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

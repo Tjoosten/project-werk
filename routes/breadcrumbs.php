@@ -26,3 +26,9 @@ Breadcrumbs::register('articles-create', function ($breadcrumbs) {
     $breadcrumbs->push('Artikelen', route('admin.articles.index'));
     $breadcrumbs->push('Nieuw artikel', route('admin.articles.create'));
 });
+
+Breadcrumbs::register('articles-edit', function ($breadcrumbs, $article) {
+    $breadcrumbs->push('Home', url('home'));
+    $breadcrumbs->push('Artikelen', route('admin.articles.index'));
+    $breadcrumbs->push('Wijzig: ' . ucfirst($article->title), route('admin.articles.edit', $article));
+});

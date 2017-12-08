@@ -40,7 +40,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown @if (Request::is('admin/artikels*')) active @endif">
                             <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-newspaper-o"></i> Nieuws
                             </a>
@@ -152,6 +152,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>$(function () {$('[data-toggle="tooltip"]').tooltip()})</script>
 @stack('scripts')
 </body>
 </html>

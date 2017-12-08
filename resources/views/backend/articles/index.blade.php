@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-newspaper-o"></i> Nieuw artikelen
+                        <i class="fa fa-newspaper-o"></i> Nieuws artikelen
 
                         <span class="pull-right">
                             <a href="{{ route('admin.articles.create') }}" class="badge badge-link">
@@ -33,7 +33,7 @@
                                             <td><strong>#{{ $article->id }}</strong></td>
                                             <td> {{-- Status --}}
                                                 @if ($article->is_published == 'Y')
-                                                    <span class="label label-success">Gepubliceerd</span>
+                                                    <span class="badge badge-success">Gepubliceerd</span>
                                                 @else
                                                     <span class="badge badge-warning">Klad versie</span>
                                                 @endif
@@ -44,6 +44,26 @@
                                                 @php (\Carbon\Carbon::setLocale(config('app.locale')))
                                                 {{ $article->created_at->diffForHumans() }}
                                             </td>
+
+                                            <td class="text-center"> {{-- Opties --}}
+                                                <a href="{{ route('admin.articles.edit', $article) }}" data-toggle="tooltip" data-placement="bottom" title="Wijzig bericht" class="text-muted">
+                                                    <i class="fa fa-fw fa-pencil"></i>
+                                                </a>
+
+                                                @if ($article->is_published == 'Y')
+                                                    <a href="{{ route('admin.status.change', ['article' => $article->id, 'status' => 'N']) }}" data-toggle="tooltip" data-placement="bottom" title="Klad status" class="text-warning">
+                                                        <i class="fa fa-fw fa-undo"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('admin.status.change', ['article' => $article->id, 'status' => 'Y']) }}" data-toggle="tooltip" data-placement="bottom" title="Publicatie status" class="text-success">
+                                                        <i class="fa fa-fw fa-check"></i>
+                                                    </a>
+                                                @endif
+
+                                                <a href="{{ route('admin.articles.delete', $article) }}" data-toggle="tooltip" data-placement="bottom" title="Verwijder artikel" class="text-danger">
+                                                    <i class="fa fa-fw fa-close"></i>
+                                                </a>
+                                            </td> {{-- /Opties --}}
                                         </tr>
                                     @endforeach
                                 @else
@@ -53,6 +73,8 @@
                                 @endif
                             </tbody>
                         </table>
+
+                        {{ $articles->render('vendor.pagination.simple-bootstrap-4') }}
                     </div>
                 </div>
             </div>
