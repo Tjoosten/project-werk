@@ -25,7 +25,11 @@ Route::get('/disclaimer', 'DisclaimerController@index')->name('disclaimer.index'
 Route::get('/admin/logs', 'LogsController@index')->name('admin.logs.index');
 
 // User routes
-Route::get('/admin/users/index', 'usersController@index')->name('admin.users.index');
+Route::get('/admin/users', 'usersController@index')->name('admin.users.index');
 Route::get('/admin/gebruiker/nieuw', 'usersController@create')->name('admin.users.create');
 Route::get('/admin/gebruiker/verwijder/{id}', 'usersController@destroy')->name('admin.users.delete');
 Route::post('/admin/gebruiker/opslaan', 'usersController@store')->name('admin.users.store');
+
+// Article routes (backend)
+Route::get('admin/artikels', 'Backend\ArticleController@index')->name('admin.articles.index');
+Route::get('admin/artikels/nieuw', 'Backend\ArticleController@create')->name('admin.articles.create');

@@ -39,6 +39,16 @@
                                 <i class="fa fa-list"></i> Logs
                             </a>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-newspaper-o"></i> Nieuws
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="newsDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.articles.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> Artikelen</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-fw fa-tags"></i> Categorieen</a>
+                            </div>
+                        </li>
                     @endif
                 </ul>
 
@@ -142,5 +152,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+@stack('scripts')
 </body>
 </html>

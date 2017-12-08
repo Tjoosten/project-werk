@@ -34,6 +34,9 @@
                                         </tr>
                                     @endforeach
                                 @else
+                                    <tr>
+                                        <td colspan="3"><i>(Er is nog geen activiteit in het systeem.)</i></td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>
