@@ -46,7 +46,6 @@ footer a {
 footer a:hover, footer a:focus {
   color: #aaa;
   text-decoration:none;
-  border-bottom:1px dotted #999;
 }
 
 footer .form-control {
@@ -56,4 +55,49 @@ footer .form-control {
   resize: none;
   color: #d1d2d2;
   padding: 0.7em 1em;
+}
+
+.social-facebook {
+  color: #3b5998;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: darken(#3b5998, 10%);
+  }
+}
+
+.social-twitter {
+  color: #1da1f2;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: darken(#1da1f2, 10%);
+  }
+}
+
+.social-github {
+  color: #fafafa;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: darken(#fafafa, 10%);
+  }
+}
+
+.social-contact-footer {
+  color: #fafafa;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: darken(#fafafa, 10%);
+  }
+}
+
+.social-flickr {
+  color: #ff0084;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: darken(#ff0084, 10%);
+  }
 }

@@ -27,6 +27,32 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
+                    @if (Auth::guest())
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fa fa-newspaper-o"></i> Nieuws
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fa fa-calendar"></i> Kalender
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fa fa-list"></i> Onze visie
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="fa fa-heart"></i> Ondersteun ons
+                            </a>
+                        </li>
+                    @endif
+
                     @if (auth()->check() && auth()->user()->hasRole('admin'))
                         <li class="nav-item @if (Request::is('admin/users*')) active @endif ">
                             <a href="{{ route('admin.users.index') }}" class="nav-link">
@@ -101,35 +127,57 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h5><i class="fa fa-road"></i> ACME CO INC.</h5>
+                    <h5>{{ config('app.name') }}</h5>
                     <div class="row">
                         <div class="col-6">
                             <ul class="list-unstyled">
-                                <li><a href="">Product</a></li>
-                                <li><a href="">Benefits</a></li>
-                                <li><a href="">Partners</a></li>
-                                <li><a href="">Team</a></li>
+                                <li><a href="https://www.vrede.be/">Vrede VZW</a></li>
+                                <li><a href="https://nonukes.be/">Belgische coalitie kernwapens</a></li>
+                                <li><a href="http://www.solidarityforall.be/">Solidarity for all</a></li>
+                                <li><a href="http://www.icanw.org/">ICAN</a></li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="list-unstyled">
-                                <li><a href="">Documentation</a></li>
-                                <li><a href="">Support</a></li>
-                                <li><a href="">Legal Terms</a></li>
-                                <li><a href="">About</a></li>
+                                <li><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="">Onze Visie</a></li>
+                                <li><a href="">Ondersteun ons</a></li>
+                                <li><a href="{{ route('disclaimer.index') }}">Disclaimer</a></li>
                             </ul>
                         </div>
                     </div>
                     <ul class="nav">
-                        <li class="nav-item"><a href="" class="nav-link pl-0"><i class="fa fa-facebook fa-lg"></i></a></li>
-                        <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-twitter fa-lg"></i></a></li>
-                        <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-github fa-lg"></i></a></li>
-                        <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-instagram fa-lg"></i></a></li>
+                        <li class="nav-item">
+                            <a href="" class="social-facebook nav-link pl-0">
+                                <i class="fa fa-facebook fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="social-twitter nav-link">
+                                <i class="fa fa-twitter fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="social-flickr nav-link">
+                                <i class="fa fa-flickr fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="social-github nav-link">
+                                <i class="fa fa-github fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="social-contact-footer nav-link">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
                     </ul>
+                    <br>
                     <br>
                 </div>
                 <div class="col-md-2">
-                    <h5 class="text-md-right">Contact Us</h5>
+                    <h5 class="text-md-right">Contacteer ons</h5>
                     <hr>
                 </div>
                 <div class="col-md-5">
@@ -141,7 +189,9 @@
                             <textarea class="form-control" id="exampleMessage" placeholder="Message"></textarea>
                         </fieldset>
                         <fieldset class="form-group text-xs-right">
-                            <button type="button" class="btn btn-secondary-outline btn-lg">Send</button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-send"></i> Verstuur
+                            </button>
                         </fieldset>
                     </form>
                 </div>

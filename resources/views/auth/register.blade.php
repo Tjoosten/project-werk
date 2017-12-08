@@ -11,6 +11,16 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="alert alert-info">
+                                    <strong><i class="fa fa-fw fa-info-circle"></i> Info:</strong>
+                                    De login word momenteel alleen maar gebruikt voor het ondertekenen van petities.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">Naam</label>
 
                             <div class="col-lg-6">
