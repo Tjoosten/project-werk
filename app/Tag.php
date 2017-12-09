@@ -15,11 +15,21 @@ class Tag extends Model
         'author_id'   => '0'
     ];
 
+    /**
+     * Relatie om de nieuws artikelen per tag op te halen.
+     *
+     * @return \Illuminate\Database\Relations\BelongsToMany
+     */
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class);
     }
 
+    /**
+     * Autheurs data relatie.
+     *
+     * @return \Illuminate\Database\Relations\BelongsTo
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
