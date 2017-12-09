@@ -97,22 +97,22 @@
 
                 <div class="card">
                     <div class="list-group list-group-flush">
-                        <a href="{{ route('ondersteuning.create') }}" class="list-group-item list-group-item-action">
+                        <a href="{{ route('ondersteuning.create', ['plan' => 'brons']) }}" class="list-group-item list-group-item-action">
                             <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield plan-bronze"></i> Brons</h4>
                             <small>- Een gift van 7 euro.</small>
                         </a>
 
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ route('ondersteuning.create', ['plan' => 'zilver']) }}" class="list-group-item list-group-item-action">
                             <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield plan-silver"></i> Zilver</h4>
                             <small>- Een gift van 12 euro.</small>
                         </a>
 
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ route('ondersteuning.create', ['plan' => 'goud']) }}" class="list-group-item list-group-item-action">
                             <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield plan-gold"></i> Goud</h4>
                             <small>- Een gift van 17 euro.</small>
                         </a>
 
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ route('ondersteuning.create', ['plan' => 'diamant']) }}" class="list-group-item list-group-item-action">
                             <h4 class="mb-0 font-weight-bold">
                                 <i class="fa fa-fw fa-shield plan-diamond"></i> Diamant
                             </h4>

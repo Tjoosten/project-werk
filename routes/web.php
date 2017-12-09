@@ -33,7 +33,7 @@ Route::post('/admin/gebruiker/opslaan', 'usersController@store')->name('admin.us
 
 // Crowdfund routes
 Route::get('ondersteun-ons', 'Frontend\CrowdfundController@index')->name('ondersteuning.index');
-Route::get('ondersteun-ons/plan', 'Frontend\CrowdfundController@create')->name('ondersteuning.create');
+Route::get('ondersteun-ons/{plan}', 'Frontend\CrowdfundController@create')->name('ondersteuning.create');
 
 // gift routes
 Route::post('/gift/opslaan', 'Backend\CrowdfundController@store')->name('gift.save');
