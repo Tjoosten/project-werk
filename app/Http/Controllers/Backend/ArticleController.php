@@ -21,9 +21,16 @@ use Illuminate\View\View;
  */
 class ArticleController extends Controller
 {
-    private $articleRepository;
-    private $tagRepository;
+    private $articleRepository; /** @var Articlerepository  $articleRepository */
+    private $tagRepository;     /** @var TagRepository      $tagRepository     */
 
+    /**
+     * ArticleController constructor.
+     *
+     * @param  ArticleRepository $articleRepository  Abstractie laag tussen controller en artikel logica, database.
+     * @param  TagRepository     $tagRepository      Abstractie laag tussen controller en tag logica, database. 
+     * @return void
+     */
     public function __construct(ArticleRepository $articleRepository, TagRepository $tagRepository)
     {
         $this->middleware(['role:admin']);
@@ -32,6 +39,11 @@ class ArticleController extends Controller
         $this->tagRepository     = $tagRepository;
     }
 
+    /**
+     * Methode voor het overzicht van nieuws artikelen.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index(): View
     {
         return view('backend.articles.index', [
@@ -39,11 +51,22 @@ class ArticleController extends Controller
         ]);
     }
 
+    /**
+     * Formulier voor het creeren van een nieuw artikel. 
+     * 
+     * @return \Illuminate\View\View
+     */
     public function create(): View
     {
         return view('backend.articles.create');
     }
 
+    /**
+     * Methode voor de opslag van een artikel in de databank. 
+     *
+     * @param  NewsValidator $input De gegeven gebruikers data. (gevalideerd).
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(NewsValidator $input): RedirectResponse
     {
         $input->merge(['author_id' => $input->user()->id]);
@@ -69,6 +92,12 @@ class ArticleController extends Controller
         return redirect()->route('admin.articles.index');
     }
 
+    /**
+     * Formulier voor het wijzigen van een artikel. 
+     * 
+     * @param  int $article De unieke waarde voor de data in de databank. (PK) 
+     * @return \Illuminate\View\View
+     */
     public function edit($article): View
     {
         $article = $this->articleRepository->findOrFail($article);
@@ -76,7 +105,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Method om de wijzigen van een bestaan artikel op te slaan.
+     * Methode om de wijzigen van een bestaan artikel op te slaan.
      * 
      * @todo De controller moet nog verder worden uitgewerkt. 
      *
@@ -90,12 +119,18 @@ class ArticleController extends Controller
         return redirect()->route('admin.articles.index');
     }
 
+    /** 
+     * Verwijder een artikel uit de databank.
+     * 
+     * @param  int $article De unieke waarde van het artikel in de database. 
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete($article): RedirectResponse
     {
         $article = $this->articleRepository->findOrFail($article);
 
         if ($article->delete()) {
-            $article->tags()->sync([]);
+            $article->tags()->sync([]); // Detachering van alle categorieen v/h artikel. 
 
             activity('articles-log')->performedOn($article)->causedBy(auth()->user())
                 ->log("Heeft het artikel '{$article->title}' verwijderd");
