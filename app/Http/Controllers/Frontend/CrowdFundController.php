@@ -17,6 +17,10 @@ class CrowdFundController extends Controller
     /**
      * Geef de basis informatie view weer voor onze crowdfund. 
      *
+     * @todo Implementatie backers counter. 
+     * @todo Implementatie twitter tweet link
+     * @todo Implementatie facebook share link.
+     * 
      * @return \illuminate\View\View
      */
     public function index(): View
@@ -27,6 +31,10 @@ class CrowdFundController extends Controller
     /**
      * Het creatie formulier voor een nieuwe gift. 
      *
+     * @todo Implementatie backers counter. 
+     * @todo Implementatie twitter tweet link
+     * @todo Implementatie facebook share link.
+     * 
      * @param  string $plan De naam van het plan waarin de gebruiker geintresseerd is. 
      * @return \Illuminate\View\View
      */
@@ -38,7 +46,7 @@ class CrowdFundController extends Controller
             case 'goud':    $plan = '17.00'; break;
             case 'diamant': $plan = '22.00'; break;
 
-            default: $plan = '7.00';
+            default: $plan = '7.00'; // Geen geldig plan opgegeven dus val terug op het minimale plan. 
         }
 
         return view('frontend.ondersteuning.create', compact('plan'));
