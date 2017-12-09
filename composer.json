@@ -17,10 +17,11 @@
         "spatie/laravel-activitylog": "^2.3",
         "spatie/laravel-medialibrary": "6.0.0",
         "spatie/laravel-permission": "^2.7",
-        "spatie/laravel-sluggable": "^2.1"
+        "spatie/laravel-sluggable": "^2.1",
     },
     "require-dev": {
         "filp/whoops": "~2.0",
+        "friendsofphp/php-cs-fixer": "^2.9",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0"

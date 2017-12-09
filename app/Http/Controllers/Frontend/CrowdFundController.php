@@ -8,6 +8,11 @@ use Illuminate\View\View;
 
 class CrowdFundController extends Controller
 {
+    /**
+     * Geef de basis informatie view weer voor onze crowdfund. 
+     *
+     * @return \illuminate\View\View
+     */
     public function index(): View
     {
         return view('frontend.ondersteuning');
