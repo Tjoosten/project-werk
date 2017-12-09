@@ -97,7 +97,7 @@
 
                 <div class="card">
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ route('ondersteuning.create') }}" class="list-group-item list-group-item-action">
                             <h4 class="mb-0 font-weight-bold"><i class="fa fa-fw fa-shield plan-bronze"></i> Brons</h4>
                             <small>- Een gift van 7 euro.</small>
                         </a>

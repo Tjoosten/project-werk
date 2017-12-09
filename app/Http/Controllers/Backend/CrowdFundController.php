@@ -2,43 +2,49 @@
 
 namespace ActivismeBe\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use ActivismeBe\Http\Requests\Backend\CrowdfundValidator;
+use ActivismeBe\Http\Requests\PaymentValidator;
 use ActivismeBe\Repositories\UserRepository;
 use ActivismeBe\Repositories\GiftRepository;
 use ActivismeBe\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 use Mollie\Laravel\Facades\Mollie;
+use Mollie_API_Exception;
 
 class CrowdFundController extends Controller
 {
     private $userRepository; 
-    private $giftRepository; 
-    private $paymentProvider; //** @var Reserved variable for the mollie laravel api. */
+    private $giftRepository;
 
-    public function __construct(UserRepository $userRepository, GiftRepository $giftRepository, Mollie $paymentProvider)
+    public function __construct(UserRepository $userRepository, GiftRepository $giftRepository)
     {
         $this->userRepository  = $userRepository;
         $this->giftRepository  = $giftRepository;
-        $this->paymentProvider = $paymentProvider;
     }
 
-    public function store(CrowdfundValidator $input): View
+    public function store(PaymentValidator $input, Log $logger): RedirectResponse
     {
-        if ($user = $this->userRepository->create($input->all())) {
-            $payment = $this->paymentProvider->api()->payments()->create([
-                'amount'      => $input->bedrag, 
-                'description' => "Gift van {$input->bedrag} voor Activisme_BE", 
-                'redirectUrl' => route('ondersteuning.index') 
-            ]);
+        $paymentData = [
+            'amount'      => $input->plan,
+            'description' => 'Steun Activisme_BE',
+            'redirectUrl' => route('ondersteuning.bedanking') // TODO: Registratie URI.
+        ];
 
-            $payment        = $this->paymentProvider->api()->payments()->get($payment->id);
-            $giftOpgeslagen = $this->giftRepository->create(['author_id' => $user->id, 'description' => $payment->description, 'amount' => $payment->amount]);
-
-            if ($payment->isPaid() && $giftOpgeslagen) {
-                return view('frontend.ondersteuning-bedankt', compact('user', '$transactie'));
+        if ($this->giftRepository->validatePlan($input->plan)) {
+            try {
+                $payment = Mollie::api()->payments()->create($paymentData);
+            } catch (Mollie_API_Exception $exception) {
+                $logger->emergency('Mollie payment issues', ['error' => htmlspecialchars($exception->getMessage())]);
+                return redirect()->route('ondersteuning.index');
             }
-        } 
+
+            // TODO: insert method for creating the backer.
+            // TODO: Insert method for creating the payment in our system.
+            // TODO: Attach both to each other.
+
+            return redirect()->away($payment->getPaymentUrl());
+        }
+
+        return redirect()->route('ondersteuning.index');
     }
 }

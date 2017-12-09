@@ -23,4 +23,17 @@ class GiftRepository extends Repository
     {
         return Gift::class;
     }
+
+    public function validatePlan($givenPlan)
+    {
+        $plans = ['7.00', '12.00', '17.00', '22.00'];
+
+        foreach ($plans as $plan) {
+            if ($givenPlan == $plan) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
