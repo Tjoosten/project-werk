@@ -10,28 +10,55 @@ use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
+/**
+ * UsersController
+ * 
+ * @author    Tim Joosten <Topairy@gmail.com>
+ * @copyright 2017 Tim Joosten
+ */
 class UsersController extends Controller
 {
-    private $userRepository;
+    private $userRepository; /** @var UserRepository $userRepository */
 
+    /**
+     * UsersController constructor
+     *
+     * @param  UserRepository $userRepository Abstractie laag tussen controller en model. 
+     * @return void
+     */
     public function __construct(UserRepository $userRepository)
     {
         $this->middleware(['role:admin'])->except('destroy');
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * De index method voor de users backend.
+     * 
+     * @return \Illuminate\View\View
+     */
     public function index(): View
     {
-        return view('backend.users.index', [
-            'users' => $this->userRepository->entity()->simplePaginate(15)
-        ]);
+        return view('backend.users.index', ['users' => $this->userRepository->entity()->simplePaginate(15)]);
     }
 
+    /**
+     * Creatie formulier in de applicatie om een gebruiker toe te voegen. 
+     *
+     * @param  RoleRepository $roleRepository Abstractie laag tussen controller en database.
+     * @return \Illuminate\View\View
+     */
     public function create(RoleRepository $roleRepository): View
     {
         return view('backend.users.create', ['roles' => $roleRepository->all()]);
     }
 
+    /**
+     * De opslag methode om een gebruiker op the slaan in het systeem.
+     *
+     * @param  UserValidator $input De gegeven gebruikers invoer. (Gevalideerd).
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(UserValidator $input): RedirectResponse
     {
         $password = str_random(16);
@@ -50,6 +77,12 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
+    /**
+     * Verwijder een gebruiker uit het systeem.
+     *
+     * @param  int $user de unieke identifier in de opslag.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($user): RedirectResponse
     {
         $user = $this->userRepository->findOrFail($user);

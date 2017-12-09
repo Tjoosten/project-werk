@@ -10,6 +10,15 @@ use Illuminate\Http\RedirectResponse;
 use ActivismeBe\Http\Controllers\Controller;
 use Illuminate\View\View;
 
+/**
+ * [Backend]: ArticleController
+ * 
+ * De controller die gebruikt word voor het management van artikelen. Indien 
+ * u zoekt naar de controller voor de artikel status. Dan vind u deze in de ArticleStatusController 
+ * 
+ * @author    Tim Joosten <Topairy@gmail.com>
+ * @copyright 2017 Tim Joosten
+ */
 class ArticleController extends Controller
 {
     private $articleRepository;
@@ -37,7 +46,7 @@ class ArticleController extends Controller
 
     public function store(NewsValidator $input): RedirectResponse
     {
-        $input->merge(['author_id' => $input->user()->id,]);
+        $input->merge(['author_id' => $input->user()->id]);
 
         if ($article = $this->articleRepository->create($input->all())) {
             $article->addMedia($input->file('image'))->toMediaCollection('images');
@@ -46,7 +55,8 @@ class ArticleController extends Controller
                 $category = $this->tagRepository->entity()->firstOrCreate(['name' => $category]);
                 $category->articles()->attach($article->id);
 
-                activity('category-activities')->performedOn($category)->causedBy($input->user())
+                activity('category-activities')->performedOn($category)
+                    ->causedBy($input->user())
                     ->log("Heeft een categorie aangemaakt ({$category->name}) in het systeem.");
             }
 
@@ -61,15 +71,22 @@ class ArticleController extends Controller
 
     public function edit($article): View
     {
-        $article    = $this->articleRepository->findOrFail($article);
-
+        $article = $this->articleRepository->findOrFail($article);
         return view('backend.articles.edit', compact('article', 'categories'));
     }
 
+    /**
+     * Method om de wijzigen van een bestaan artikel op te slaan.
+     * 
+     * @todo De controller moet nog verder worden uitgewerkt. 
+     *
+     * @param  NewsUpdateValidator  $input   Het object voor de opgegeven gebruikers data. (gevalideerd)
+     * @param  int                  $article De unieke waarde voor de data in de databank. (PK)
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(NewsUpdateValidator $input, $article): RedirectResponse
     {
         $input->merge(['author_id' => $input->user()->id]);
-
         return redirect()->route('admin.articles.index');
     }
 
