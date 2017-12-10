@@ -53,8 +53,12 @@ class CrowdFundController extends Controller
     }
 
     /**
+     * Het bedank bericht voor een gift.
+     * 
      * @todo docblock 
      * @todo controller logic.
+     * 
+     * @return \Illuminate\View\View
      */
     public function show(): View
     {
