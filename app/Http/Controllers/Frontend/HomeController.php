@@ -2,6 +2,7 @@
 
 namespace ActivismeBe\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use ActivismeBe\Repositories\TagRepository;
@@ -43,7 +44,7 @@ class HomeController extends Controller
     {
         return view('frontend.welcome', [
             'tags'     => $this->tagRepository->entity()->inRandomOrder()->take(20)->get(), 
-            'articles' => $this->articleRepository->entity()->simplePaginate(2),
+            'articles' => $this->articleRepository->entity()->whereDate('publish_date', '>=', Carbon::today()->toDateString())->simplePaginate(2),
         ]);
     }
 }

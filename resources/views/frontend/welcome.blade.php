@@ -26,16 +26,16 @@
             <div class="col-lg-8"> {{-- Content --}}
                 @foreach ($articles as $article) {{-- Loop through the articles --}} 
                     <div class="card br-card card-shadow mb-4">
-                        <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images') }}" alt="{{ $article->title }}">
+                        <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images') }}" alt="{{ ucfirst($article->title) }}">
                         <div class="card-body">
-                            <h2 class="card-title icon-jumbotron">{{ $article->title }}</h2>
+                            <h2 class="card-title icon-jumbotron">{{ ucfirst($article->title) }}</h2>
 
                             <p class="card-text">
                                 @if (strlen(strip_tags($article->message)) > 250)
-                                    {!! str_limit($article->message, 255, '...') !!}
+                                    {!! str_limit(ucfirst($article->message), 255, '...') !!}
                                     <a href="#" class="btn br-card btn-primary">Lees meer &rarr;</a>
                                 @else {{-- Lees meer knop is niet nodig. --}}
-                                    {!! $article->message !!}
+                                    {!! ucfirst($article->message) !!}
                                 @endif
                             </p>
                         </div>
