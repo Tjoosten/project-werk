@@ -35,6 +35,9 @@ Route::get('ondersteun-ons/{plan}', 'Frontend\CrowdfundController@create')->name
 // gift routes
 Route::post('/gift/opslaan', 'Backend\CrowdfundController@store')->name('gift.save');
 
+// Bug routes 
+Route::get('/meld-een-probleem', 'Backend\BugController@index')->name('bug.index');
+Route::post('/meld-een-probleem', 'Backend\BugController@store')->name('bug.create');
 
 // Article routes (backend)
 Route::get('/admin/artikels', 'Backend\ArticleController@index')->name('admin.articles.index');

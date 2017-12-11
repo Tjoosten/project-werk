@@ -98,7 +98,7 @@
                                 <a href="" class="dropdown-item">
                                     <i class="fa fa-fw fa-cogs"></i> Instellingen
                                 </a>
-                                <a href="" class="dropdown-item">
+                                <a href="{{ route('bug.index') }}" class="dropdown-item">
                                     <i class="fa fa-fw fa-bug"></i> Meld een probleem
                                 </a>
                                 <div class="dropdown-divider"></div>
