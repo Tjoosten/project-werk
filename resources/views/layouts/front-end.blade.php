@@ -27,7 +27,29 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
-                    @if (Auth::guest())
+                    @if (auth()->check() && auth()->user()->hasRole('admin'))
+                        <li class="nav-item @if (Request::is('admin/users*')) active @endif ">
+                            <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                <i class="fa fa-users"></i> Gebruikers
+                            </a>
+                        </li>
+
+                        <li class="nav-item @if (Request::is('admin/logs*')) active @endif">
+                            <a href="{{ route('admin.logs.index') }}" class="nav-link">
+                                <i class="fa fa-list"></i> Logs
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown @if (Request::is('admin/artikels*')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-newspaper-o"></i> Nieuws
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="newsDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.articles.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> Artikelen</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-fw fa-tags"></i> Categorieen</a>
+                            </div>
+                        </li>
+                    @else 
                         <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="fa fa-newspaper-o"></i> Nieuws
@@ -50,30 +72,6 @@
                             <a href="{{ route('ondersteuning.index') }}" class="nav-link @if(Request::is('ondersteun-ons*')) active @endif">
                                 <i class="fa fa-heart"></i> Ondersteun ons
                             </a>
-                        </li>
-                    @endif
-
-                    @if (auth()->check() && auth()->user()->hasRole('admin'))
-                        <li class="nav-item @if (Request::is('admin/users*')) active @endif ">
-                            <a href="{{ route('admin.users.index') }}" class="nav-link">
-                                <i class="fa fa-users"></i> Gebruikers
-                            </a>
-                        </li>
-
-                        <li class="nav-item @if (Request::is('admin/logs*')) active @endif">
-                            <a href="{{ route('admin.logs.index') }}" class="nav-link">
-                                <i class="fa fa-list"></i> Logs
-                            </a>
-                        </li>
-
-                        <li class="nav-item dropdown @if (Request::is('admin/artikels*')) active @endif">
-                            <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-newspaper-o"></i> Nieuws
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="newsDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.articles.index') }}"><i class="fa fa-fw fa-newspaper-o"></i> Artikelen</a>
-                                <a class="dropdown-item" href="#"><i class="fa fa-fw fa-tags"></i> Categorieen</a>
-                            </div>
                         </li>
                     @endif
                 </ul>
