@@ -41,6 +41,7 @@ class ArticleController extends Controller
     public function index(): View
     {
         if ($this->articleRepository->entity()->count() === 0) {
+            // Return the user back to the index if there are no news messages in the database. 
             return redirect()->to(url('/'));
         }
 
@@ -62,7 +63,7 @@ class ArticleController extends Controller
      */
     public function show($articleSlug): View
     {
-        $article = $this->newsRepository->entity()->whereSlug($articleSlug)->firstOrFail();
+        $article = $this->articleRepository->entity()->whereSlug($articleSlug)->firstOrFail();
         $tags    = $this->tagRepository->entity()->inRandomOrder()->take(20)->get();
 
         return view('frontend.articles.show', compact('article', 'tags'));
