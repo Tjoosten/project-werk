@@ -57,7 +57,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * 
+     * Geef een specifiek nieuwebericht weer. 
      *
      * @return \Illuminate\View\View
      */
