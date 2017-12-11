@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use ActivismeBe\Repositories\ArticleRepository;
 use ActivismeBe\Repositories\TagRepository;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use ActivismeBe\Http\Controllers\Controller;
 
 /**
@@ -37,8 +38,12 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index() 
+    public function index(): View
     {
+        if ($this->articleRepository->entity()->count() === 0) {
+            return redirect()->to(url('/'));
+        }
+
         $articles = $this->articleRepository->entity()
             ->whereDate('publish_date', '>=', Carbon::today()->toDateString())
             ->where('is_published', 'Y')
@@ -50,8 +55,16 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function show() 
+    /**
+     * 
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($articleSlug): View
     {
+        $article = $this->newsRepository->entity()->whereSlug($articleSlug)->firstOrFail();
+        $tags    = $this->tagRepository->entity()->inRandomOrder()->take(20)->get();
 
+        return view('frontend.articles.show', compact('article', 'tags'));
     }
 }

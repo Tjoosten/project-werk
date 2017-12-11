@@ -26,7 +26,7 @@
             <div class="col-lg-8"> {{-- Content --}}
             
                 <div class="card br-card card-shadow">
-                    <a href="">
+                    <a href="{{ route('news.show', ['slug' => $article->slug]) }}">
                         <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ ucfirst($article->title) }}">
                     </a>
                     
@@ -49,28 +49,33 @@
                 
                 <hr> {{-- Breakline below are smaller news content items. --}}
 
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <ul class="list-unstyled">
-                            @foreach ($articles as $article)
-                                <li class="media @if (! $loop->last) mb-3 @endif">
-                                    <a href="">
-                                        <img class="mr-3" src="{{ $article->getFirstMediaUrl('images', 'thumb-100') }}" alt="{{ $article->title }}" style="border-radius: 3px; width: 100px; height: 100px;">
-                                    </a>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">{{ $article->title }}</h5>
+                @if (count($articles) > 0)
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                @foreach ($articles as $article)
+                                    <li class="media @if (! $loop->last) mb-3 @endif">
+                                        <a href="{{ route('news.show', ['slug' => $article->slug]) }}">
+                                            <img style="border-radius: 3px; width: 100px; height: 100px;" class="mr-3" src="{{ $article->getFirstMediaUrl('images', 'thumb-100') }}" alt="{{ $article->title }}">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">{{ $article->title }}</h5>
 
-                                        @if (strlen(strip_tags($article->message)) > 150)
-                                            {!! str_limit(ucfirst($article->message), 157, '...') !!}
-                                        @else {{-- Lees meer knop is niet nodig. --}}
-                                            {!! ucfirst($article->message) !!}
-                                        @endif
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+                                            @if (strlen(strip_tags($article->message)) > 150)
+                                                {!! str_limit(ucfirst($article->message), 157, '...') !!}
+                                            @else {{-- Lees meer knop is niet nodig. --}}
+                                                {!! ucfirst($article->message) !!}
+                                            @endif
+
+                                            <hr class="mt-1 mb-0">
+                                            <small>Geplaatst op {{ $article->created_at->format('d F Y') }}.</small>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div> 
+                @endif
             
             </div> {{-- /END content --}}
         

@@ -15,7 +15,7 @@
                         <ul class="list-unstyled mb-4">
                             @foreach ($articles as $article)
                                 <li class="media @if (! $loop->last) mb-3 @endif">
-                                    <a href="">
+                                    <a href="{{ route('news.show', ['slug' => $article->slug]) }}">
                                         <img class="mr-3" src="{{ $article->getFirstMediaUrl('images', 'thumb-100') }}" alt="{{ $article->title }}" style="border-radius: 3px; width: 100px; height: 100px;">
                                     </a>
                                     <div class="media-body">
@@ -26,6 +26,9 @@
                                         @else {{-- Lees meer knop is niet nodig. --}}
                                             {!! ucfirst($article->message) !!}
                                         @endif
+
+                                        <hr class="mt-1 mb-0">
+                                        <small>Geplaatst op {{ $article->created_at->format('d F Y') }}.</small>
                                     </div>
                                 </li>
                             @endforeach
