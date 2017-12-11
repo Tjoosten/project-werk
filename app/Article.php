@@ -33,9 +33,15 @@ class Article extends Model implements HasMediaConversions
     {
         $this->addMediaConversion('thumb-image')
             ->width(750)
-            ->height(300)
+            ->height(220)
             ->optimize()
-            ->performOnCollections('images');;
+            ->performOnCollections('images');
+
+        $this->addMediaConversion('thumb-100')
+            ->width('100')
+            ->height('100')
+            ->optimize()
+            ->performOnCollections('images');
     }
 
     public function getSlugOptions() : SlugOptions

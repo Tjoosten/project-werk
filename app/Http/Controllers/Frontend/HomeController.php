@@ -42,9 +42,15 @@ class HomeController extends Controller
      */
     public function index(): View 
     {
+        $articles = $this->articleRepository->entity()
+            ->whereDate('publish_date', '>=', Carbon::today()->toDateString())
+            ->where('is_published', 'Y')
+            ->orderBy('created_at', 'desc');
+
         return view('frontend.welcome', [
             'tags'     => $this->tagRepository->entity()->inRandomOrder()->take(20)->get(), 
-            'articles' => $this->articleRepository->entity()->whereDate('publish_date', '>=', Carbon::today()->toDateString())->simplePaginate(2),
+            'article'  => $articles->first(),
+            'articles' => $articles->skip(1)->take(4)->get()
         ]);
     }
 }

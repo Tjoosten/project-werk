@@ -24,35 +24,60 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8"> {{-- Content --}}
-                @foreach ($articles as $article) {{-- Loop through the articles --}} 
-                    <div class="card br-card card-shadow mb-4">
-                        <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images') }}" alt="{{ ucfirst($article->title) }}">
-                        <div class="card-body">
-                            <h2 class="card-title icon-jumbotron">{{ ucfirst($article->title) }}</h2>
+            
+                <div class="card br-card card-shadow">
+                    <a href="">
+                        <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ ucfirst($article->title) }}">
+                    </a>
+                    
+                    <div class="card-body">
+                        <h2 class="card-title icon-jumbotron">{{ ucfirst($article->title) }}</h2>
 
-                            <p class="card-text">
-                                @if (strlen(strip_tags($article->message)) > 250)
-                                    {!! str_limit(ucfirst($article->message), 255, '...') !!}
-                                    <a href="#" class="btn br-card btn-primary">Lees meer &rarr;</a>
-                                @else {{-- Lees meer knop is niet nodig. --}}
-                                    {!! ucfirst($article->message) !!}
-                                @endif
-                            </p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            Geplaatst op {{ $article->publish_date->format('d F Y') }}
-                            {{-- <span class="pull-right">{{ $article->author->name }}</span> --}}
-                        </div>
+                        <p class="card-text">
+                            @if (strlen(strip_tags($article->message)) > 250)
+                                {!! str_limit(ucfirst($article->message), 255, '...') !!}
+                            @else {{-- Lees meer knop is niet nodig. --}}
+                                {!! ucfirst($article->message) !!}
+                            @endif
+                        </p>
                     </div>
-                @endforeach {{-- /END article loop --}}
+                    <div class="card-footer text-muted">
+                        Geplaatst op {{ $article->publish_date->format('d F Y') }}
+                        {{-- <span class="pull-right">{{ $article->author->name }}</span> --}}
+                    </div>
+                </div>
+                
+                <hr> {{-- Breakline below are smaller news content items. --}}
 
-                {{ $articles->render('vendor.pagination.simple-bootstrap-4') }} {{-- Pagination instance --}}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            @foreach ($articles as $article)
+                                <li class="media @if (! $loop->last) mb-3 @endif">
+                                    <a href="">
+                                        <img class="mr-3" src="{{ $article->getFirstMediaUrl('images', 'thumb-100') }}" alt="{{ $article->title }}" style="border-radius: 3px; width: 100px; height: 100px;">
+                                    </a>
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">{{ $article->title }}</h5>
+
+                                        @if (strlen(strip_tags($article->message)) > 150)
+                                            {!! str_limit(ucfirst($article->message), 157, '...') !!}
+                                        @else {{-- Lees meer knop is niet nodig. --}}
+                                            {!! ucfirst($article->message) !!}
+                                        @endif
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            
             </div> {{-- /END content --}}
         
             <div class="col-lg-4"> {{-- Sidebar --}}
 
                 <div class="card"> {{-- Categories --}}
-                    <div class="card-header">Categorieen</div>
+                    <div class="card-header">Nieuws categorieen</div>
                     <div class="card-body">
                         @if (count($tags) > 0) 
                             @foreach ($tags as $tag) {{-- Loop through the tags --}}
