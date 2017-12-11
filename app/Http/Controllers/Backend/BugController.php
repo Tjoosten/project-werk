@@ -13,12 +13,7 @@ use ActivismeBe\Http\Controllers\Controller;
  * [Backend]: Bug controller 
  * 
  * Deze controller is toegewijd als brug tussen de issue tracker op github. 
- * Zodat een gebruiker een fout tegenkomt deze automatisch in de bug tracker van gehub word geplaatst. 
- *
- * @todo Toevoegen van github creds in de .env
- * @todo Aanmaken toegewijd configuratie bestand voor github. 
- * @todo Aanmaken van de view. 
- * @todo Aanmaken van de routeringen. 
+ * Zodat een gebruiker een fout tegenkomt deze automatisch in de bug tracker van gehub word geplaatst.
  *  
  * @author      Tim Joosten <Topairy@gmail.com>
  * @copyright   2017 Tim Joosten
