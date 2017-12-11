@@ -46,7 +46,7 @@ class HomeController extends Controller
             ->whereDate('publish_date', '>=', Carbon::today()->toDateString())
             ->where('is_published', 'Y')
             ->orderBy('created_at', 'desc');
-
+            
         return view('frontend.welcome', [
             'tags'     => $this->tagRepository->entity()->inRandomOrder()->take(20)->get(), 
             'article'  => $articles->first(),

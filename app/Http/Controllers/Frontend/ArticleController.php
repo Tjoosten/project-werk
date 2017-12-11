@@ -36,9 +36,9 @@ class ArticleController extends Controller
     /**
      * Haal alle nieuwsberichten op uit de databank en geef deze weer.
      *
-     * @return \Illuminate\View\View
+     * @return mixed
      */
-    public function index(): View
+    public function index()
     {
         if ($this->articleRepository->entity()->count() === 0) {
             // Return the user back to the index if there are no news messages in the database. 

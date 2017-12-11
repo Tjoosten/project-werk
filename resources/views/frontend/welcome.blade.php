@@ -25,27 +25,29 @@
         <div class="row">
             <div class="col-lg-8"> {{-- Content --}}
             
-                <div class="card br-card card-shadow">
-                    <a href="{{ route('news.show', ['slug' => $article->slug]) }}">
-                        <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ ucfirst($article->title) }}">
-                    </a>
-                    
-                    <div class="card-body">
-                        <h2 class="card-title icon-jumbotron">{{ ucfirst($article->title) }}</h2>
+                @if (! is_null($article))
+                    <div class="card br-card card-shadow">
+                        <a href="{{ route('news.show', ['slug' => $article->slug]) }}">
+                            <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ ucfirst($article->title) }}">
+                        </a>
+                        
+                        <div class="card-body">
+                            <h2 class="card-title icon-jumbotron">{{ ucfirst($article->title) }}</h2>
 
-                        <p class="card-text">
-                            @if (strlen(strip_tags($article->message)) > 250)
-                                {!! str_limit(ucfirst($article->message), 255, '...') !!}
-                            @else {{-- Lees meer knop is niet nodig. --}}
-                                {!! ucfirst($article->message) !!}
-                            @endif
-                        </p>
+                            <p class="card-text">
+                                @if (strlen(strip_tags($article->message)) > 250)
+                                    {!! str_limit(ucfirst($article->message), 255, '...') !!}
+                                @else {{-- Lees meer knop is niet nodig. --}}
+                                    {!! ucfirst($article->message) !!}
+                                @endif
+                            </p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Geplaatst op {{ $article->publish_date->format('d F Y') }}
+                            {{-- <span class="pull-right">{{ $article->author->name }}</span> --}}
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        Geplaatst op {{ $article->publish_date->format('d F Y') }}
-                        {{-- <span class="pull-right">{{ $article->author->name }}</span> --}}
-                    </div>
-                </div>
+                @endif
                 
                 <hr> {{-- Breakline below are smaller news content items. --}}
 
