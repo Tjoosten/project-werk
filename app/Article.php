@@ -70,13 +70,11 @@ class Article extends Model implements HasMediaConversions
         $this->addMediaConversion('thumb-image') // (1)
             ->width(750)
             ->height(220)
-            ->optimize()
             ->performOnCollections('images');
 
         $this->addMediaConversion('thumb-100') // (2)
             ->width('100')
             ->height('100')
-            ->optimize()
             ->performOnCollections('images');
     }
 
