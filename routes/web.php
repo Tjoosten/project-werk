@@ -43,5 +43,8 @@ Route::post('/admin/artikels/store', 'Backend\ArticleController@store')->name('a
 Route::get('/admin/artikels/wijzig/{id}', 'Backend\ArticleController@edit')->name('admin.articles.edit');
 Route::get('/admin/artikels/verwijder/{id}', 'Backend\ArticleController@delete')->name('admin.articles.delete');
 
+// Article routes (frontend)
+Route::get('/nieuws', 'Frontend\ArticleController@index')->name('news.index');
+
 // Article status routes
 Route::get('admin/article/status/{article}/{status}', 'backend\ArticleStatusController@update')->name('admin.status.change');

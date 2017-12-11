@@ -50,8 +50,8 @@
                             </div>
                         </li>
                     @else 
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <li class="nav-item @if (Request::is('nieuws*')) active @endif">
+                            <a href="{{ route('news.index') }}" class="nav-link">
                                 <i class="fa fa-newspaper-o"></i> Nieuws
                             </a>
                         </li>

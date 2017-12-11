@@ -1,0 +1,60 @@
+@extends('layouts.front-end')
+
+@section('content')
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3"><i class="icon-jumbotron fa fa-newspaper-o"></i> Nieuws,</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-4">
+                            @foreach ($articles as $article)
+                                <li class="media @if (! $loop->last) mb-3 @endif">
+                                    <a href="">
+                                        <img class="mr-3" src="{{ $article->getFirstMediaUrl('images', 'thumb-100') }}" alt="{{ $article->title }}" style="border-radius: 3px; width: 100px; height: 100px;">
+                                    </a>
+                                    <div class="media-body">
+                                        <h5 class="mt-0 mb-1">{{ $article->title }}</h5>
+
+                                        @if (strlen(strip_tags($article->message)) > 150)
+                                            {!! str_limit(ucfirst($article->message), 157, '...') !!}
+                                        @else {{-- Lees meer knop is niet nodig. --}}
+                                            {!! ucfirst($article->message) !!}
+                                        @endif
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        {{ $articles->render('vendor.pagination.simple-bootstrap-4') }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4"> {{-- Sidebar --}}
+
+                <div class="card"> {{-- Categories --}}
+                    <div class="card-header">Nieuws categorieen</div>
+                    <div class="card-body">
+                        @if (count($tags) > 0) 
+                            @foreach ($tags as $tag) {{-- Loop through the tags --}}
+                                <a class="badge badge-danger" href="">
+                                    {{ $tag->name }}
+                                </a>
+                            @endforeach
+                        @else {{-- Geen categorieen gevonden --}}
+                            <i class="text-muted">(Er zijn momenteel geen categorieen.)</i>
+                        @endif
+                    </div>
+                </div> {{-- /END categories --}}
+
+            </div> {{-- /END sidebar --}}
+        </div>
+    </div>
+    
+@endsection
