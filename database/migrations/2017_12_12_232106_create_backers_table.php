@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGiftsTable extends Migration
+class CreateBackersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateGiftsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gifts', function (Blueprint $table) {
+        Schema::create('backers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('backer_id'); 
-            $table->string('transaction_id');
-            $table->string('amount');
-            $table->string('status');
+            $table->string('firstname'); 
+            $table->string('lastname'); 
+            $table->string('email'); 
+            $table->string('street_name'); 
+            $table->string('huis_nr'); 
+            $table->string('postal_code'); 
+            $table->string('city');
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateGiftsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gifts');
+        Schema::dropIfExists('backers');
     }
 }

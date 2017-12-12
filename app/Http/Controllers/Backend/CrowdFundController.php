@@ -4,6 +4,7 @@ namespace ActivismeBe\Http\Controllers\Backend;
 
 use ActivismeBe\Http\Requests\PaymentValidator;
 use ActivismeBe\Repositories\UserRepository;
+use ActivismeBe\Repositories\BackerRepository;
 use ActivismeBe\Repositories\GiftRepository;
 use ActivismeBe\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -21,28 +22,29 @@ use Mollie_API_Exception;
  */
 class CrowdFundController extends Controller
 {
-    private $userRepository; /** @var UserRepository $userRepository */ 
-    private $giftRepository; /** @var GiftRepository $giftRepository */
+    private $userRepository;    /** @var UserRepository     $userRepository   */ 
+    private $giftRepository;    /** @var GiftRepository     $giftRepository   */
+    private $backerRepository;  /** @var BackerRepository   $backerRepository */
 
     /**
      * CrowdfundController constructor
      *
-     * @param  UserRepository $userRepository Abstractie laaf tussen controller, user logica en databank.
-     * @param  GiftRepository $giftRepository Abstractie laag tussen controller, gift logica en databank.
+     * @param  UserRepository   $userRepository     Abstractie laaf tussen controller, user logica en ORM.
+     * @param  GiftRepository   $giftRepository     Abstractie laag tussen controller, gift logica en ORM.
+     * @param  Backerrepository $backerRepository   Abstractie laag tussen controller, backer logica en ORM.
      * @return void
      */
-    public function __construct(UserRepository $userRepository, GiftRepository $giftRepository)
+    public function __construct(UserRepository $userRepository, GiftRepository $giftRepository, BackerRepository $backerRepository)
     {
-        $this->userRepository = $userRepository;
-        $this->giftRepository = $giftRepository;
+        $this->userRepository   = $userRepository;
+        $this->giftRepository   = $giftRepository;
+        $this->backerRepository = $backerRepository;
     }
 
     /**
      * Verwerking en opslag van de gift in ons systeem en dat van Mollie. 
      *
      * @todo [Ons systeem]: Het aanmaken van de gebruiker in het systeem.
-     * @todo [Ons systeem]: Methode voor het opslaan van de betalings gegevens. 
-     * @todo [Ons systeem]: Attacheer de backer aan de betalings gegevens. 
      * 
      * @param  PaymentValidator $input  De door gebruiker gegeven data. (gavalideerd).
      * @return \Illuminate\Http\RedirectResponse
@@ -52,11 +54,12 @@ class CrowdFundController extends Controller
         if ($this->giftRepository->validatePlan($input->plan)) {
             try // Probeer een betaling aan te maken in het systeem van mollie.  
             { 
-                $payment = Mollie::api()->payments()->create([
-                    'amount'      => $input->plan,
-                    'description' => 'Steun Activisme_BE',
-                    'redirectUrl' => route('ondersteuning.bedanking')
-                ]);
+                // Payment Gateway Provider
+                $payment = Mollie::api()->payments()->create(['amount' => $input->plan, 'description' => 'Steun Activisme_BE', 'redirectUrl' => route('ondersteuning.bedanking')]);
+
+                // Internal Payment system.
+                $backer = $this->backerRepository->entity()->firstOrCreate($input->except(['_token', 'plan']));
+                $this->giftRepository->create(['backer_id' => $backer->id, 'amount' => $input->plan, 'transaction_id' => $payment->id, 'status' => $payment->status]);
             } 
 
             catch (Mollie_API_Exception $exception) // De foutmelding als iets misploopt. Log deze en stuur de gebruiker terug?
