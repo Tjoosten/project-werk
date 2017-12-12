@@ -90,12 +90,11 @@
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }}
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user"></i> {{ auth()->user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a href="" class="dropdown-item">
+                                <a href="{{ route('account.settings', ['type' => 'informatie']) }}" class="dropdown-item">
                                     <i class="fa fa-fw fa-cogs"></i> Instellingen
                                 </a>
                                 <a href="{{ route('bug.index') }}" class="dropdown-item">

@@ -11,9 +11,15 @@
 |
 */
 
+// Authencation related routes.
 Auth::routes();
+Route::get('/admin/account/instellingen/{type}', 'Auth\AccountSettingsController@index')->name('account.settings');
+Route::patch('/admin/account/instellingen/info', 'Auth\AccountSettingsController@updateInformation')->name('account.settings.info');
+Route::patch('/admin/account/instellingen/beveiliging', 'Auth\AccountSettingsController@updateSecurity')->name('account.settings.security');
+
+// Home routes
 Route::get('/', 'Frontend\HomeController@index')->name('home.front');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/home', 'HomeController@index')->name('home');
 
 // Frontend
 Route::get('/disclaimer', 'DisclaimerController@index')->name('disclaimer.index');
@@ -36,8 +42,8 @@ Route::get('ondersteun-ons/{plan}', 'Frontend\CrowdfundController@create')->name
 Route::post('/gift/opslaan', 'Backend\CrowdfundController@store')->name('gift.save');
 
 // Bug routes 
-Route::get('/meld-een-probleem', 'Backend\BugController@index')->name('bug.index');
-Route::post('/meld-een-probleem', 'Backend\BugController@store')->name('bug.create');
+Route::get('/admin/meld-een-probleem', 'Backend\BugController@index')->name('bug.index');
+Route::post('/admin/meld-een-probleem', 'Backend\BugController@store')->name('bug.create');
 
 // Article routes (backend)
 Route::get('/admin/artikels', 'Backend\ArticleController@index')->name('admin.articles.index');

@@ -3,8 +3,12 @@
 namespace ActivismeBe\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use ActivismeBe\Http\Requests\Auth\InfoValidator; 
+use ActivismeBe\Http\Requests\Auth\SecurityValidator;
 use ActivismeBe\Repositories\UserRepository;
 use ActivismeBe\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse; 
+use Illuminate\View\View;
 
 /**
  * [Authencation]: Account configuratie controller. 
@@ -16,24 +20,56 @@ use ActivismeBe\Http\Controllers\Controller;
  */
 class AccountSettingsController extends Controller
 {
+    private $userRepository; 
+
     public function __construct(UserRepository $userRepository) 
     {
         $this->middleware('auth'); 
         $this->userRepository = $userRepository;
     }
 
-    public function index() 
+    /**
+     * Index pagina voor de account configuratie. 
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(): View 
     {
-
+        $user = $this->userRepository->findOrFail(auth()->user()->id);
+        return view('auth.account-settings', compact('user'));
     }
 
-    public function updateInformation() 
+    /**
+     * Pas de account informatie aan in de databank. 
+     *
+     * @param  InfoValidator $input De invoer van het formulier. (Gevalideerd). 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateInformation(InfoValidator $input): RedirectResponse 
     {
+        $user = $this->userRepository->findOrfail(auth()->user()->id);
 
+        if ($user->update($input->all())) {
+            flash('U hebt uw account informatie succesvol aangepast.')->success();
+        } 
+
+        return redirect()->route('account.settings', ['type' => 'informatie']);
     }
 
-    public function updateSecurity() 
+    /**
+     * Pas de account beveiliging aan in de databank. 
+     * 
+     * @param  SecurityValidator $input De invoer van het formulier. (Gevalideerd). 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateSecurity(SecurityValidator $input): RedirectResponse 
     {
-        
+        $user = $this->userrepository->findOrFail(auth()->user()->id); 
+
+        if ($user->update($input->all())) {
+            flash('U hebt uw account beveiliging succesvol aangepast.')->success();
+        } 
+
+        return redirect()->route('account.settings', ['type' => 'beveiliging']);
     }
 }

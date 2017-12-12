@@ -23,7 +23,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
@@ -33,5 +33,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function showLoginForm()
+    {
+        if (! session()->has('url.intended')) {
+            session(['url.intended' => url()->previous()]);
+        }
+        
+        return view('auth.login');    
     }
 }
