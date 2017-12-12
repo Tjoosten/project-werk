@@ -158,12 +158,12 @@
                     <div class="card-body">
                         <div class="row font-weight-bold">
                             <div class="col-md-6">
-                                <h4 class="font-weight-bold">23</h4>
+                                <h4 class="font-weight-bold">{{ $backers }}</h4>
                                 <span class="text-muted">Bijdrages</span>
                             </div>
 
                             <div class="col-md-6">
-                                <h4 class="font-weight-bold">2.300€</h4>
+                                <h4 class="font-weight-bold">{{ $collected }}€</h4>
                                 <span class="text-muted">Ingezameld</span>
                             </div>
                         </div>

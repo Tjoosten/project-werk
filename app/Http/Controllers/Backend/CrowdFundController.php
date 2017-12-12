@@ -40,16 +40,14 @@ class CrowdFundController extends Controller
     /**
      * Verwerking en opslag van de gift in ons systeem en dat van Mollie. 
      *
-     * @todo [Ons systeem]: maak de redirectUrl aan. ( route('ondersteuning.bedankin') )
      * @todo [Ons systeem]: Het aanmaken van de gebruiker in het systeem.
      * @todo [Ons systeem]: Methode voor het opslaan van de betalings gegevens. 
      * @todo [Ons systeem]: Attacheer de backer aan de betalings gegevens. 
      * 
      * @param  PaymentValidator $input  De door gebruiker gegeven data. (gavalideerd).
-     * @param  Log              $logger De log instantie voor het wegschrijven van een mogelijke foutmelding. 
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(PaymentValidator $input, Log $logger): RedirectResponse
+    public function store(PaymentValidator $input): RedirectResponse
     {
         if ($this->giftRepository->validatePlan($input->plan)) {
             try // Probeer een betaling aan te maken in het systeem van mollie.  
@@ -63,9 +61,9 @@ class CrowdFundController extends Controller
 
             catch (Mollie_API_Exception $exception) // De foutmelding als iets misploopt. Log deze en stuur de gebruiker terug?
             { 
-                $logger->emergency('Mollie payment issues', ['error' => htmlspecialchars($exception->getMessage())]);
+                Log::emergency('Mollie payment issues', ['error' => htmlspecialchars($exception->getMessage())]);
 
-                flash('Helaas konden we de betaling niet doorvoeren.')->warning(); 
+                flash('Helaas konden we de betaling niet doorvoeren. Door een interne fout in het systeem.')->warning(); 
                 return redirect()->route('ondersteuning.index');
             }
             

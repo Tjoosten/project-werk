@@ -2,6 +2,7 @@
 
 namespace ActivismeBe\Http\Controllers\Frontend;
 
+use ActivismeBe\Repositories\GiftRepository;
 use Illuminate\Http\Request;
 use ActivismeBe\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -14,6 +15,19 @@ use Illuminate\View\View;
  */
 class CrowdFundController extends Controller
 {
+    private $giftRepository; /** @var GiftRepository $giftRepository */
+
+    /**
+     * CrowdfundController constructor
+     *
+     * @param  GiftRepository   $giftRepository     Abstractie laag tussen, controller en ORM.
+     * @return void
+     */
+    public function __construct(GiftRepository $giftRepository) 
+    {
+        $this->giftRepository = $giftRepository; 
+    }
+
     /**
      * Geef de basis informatie view weer voor onze crowdfund. 
      *
@@ -25,7 +39,11 @@ class CrowdFundController extends Controller
      */
     public function index(): View
     {
-        return view('frontend.ondersteuning');
+        return view('frontend.ondersteuning', [
+            'collected' => $this->giftRepository->entity()->sum('amount'), 
+            'backers'   => $this->giftRepository->entity()->count(),
+            'social'    => ''
+        ]);
     }
 
     /**
@@ -34,22 +52,18 @@ class CrowdFundController extends Controller
      * @todo Implementatie backers counter. 
      * @todo Implementatie twitter tweet link
      * @todo Implementatie facebook share link.
-     * 
+     *
      * @param  string $plan De naam van het plan waarin de gebruiker geintresseerd is. 
      * @return \Illuminate\View\View
      */
     public function create($plan): View
     {
-        switch ($plan) { // Bepaal het bedrag en opslag in variable voor te laten passeren naar form.
-            case 'brons':   $plan = '7.00';  break; 
-            case 'zilver':  $plan = '12.00'; break;
-            case 'goud':    $plan = '17.00'; break;
-            case 'diamant': $plan = '22.00'; break;
-
-            default: $plan = '7.00'; // Geen geldig plan opgegeven dus val terug op het minimale plan. 
-        }
-
-        return view('frontend.ondersteuning.create', compact('plan'));
+        return view('frontend.ondersteuning.create', [
+            'plan'      => $this->giftRepository->prefillPlan($plan),
+            'collected' => $this->giftRepository->entity()->sum('amount'), 
+            'backers'   => $this->giftRepository->entity()->count(),
+            'social'    => ''
+        ]);
     }
 
     /**
