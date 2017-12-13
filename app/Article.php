@@ -5,6 +5,7 @@ namespace ActivismeBe;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\MediaLibrary\Media;
@@ -68,13 +69,12 @@ class Article extends Model implements HasMediaConversions
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb-image') // (1)
-            ->width(750)
-            ->height(220)
+            ->fit(Manipulations::FIT_STRETCH, 900, 300)
             ->performOnCollections('images');
 
         $this->addMediaConversion('thumb-100') // (2)
-            ->width('100')
-            ->height('100')
+            ->height(100)
+            ->width(100)
             ->performOnCollections('images');
     }
 

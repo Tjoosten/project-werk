@@ -4,6 +4,9 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-3"><i class="icon-jumbotron fa fa-newspaper-o"></i> Nieuws,</h1>
+            <p class="lead">
+                Blijf op de hoogte omtrent de acites die wij ondernemen.
+            </p>
         </div>
     </div>
 

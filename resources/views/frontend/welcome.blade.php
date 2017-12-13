@@ -28,7 +28,7 @@
                 @if (! is_null($article))
                     <div class="card br-card card-shadow">
                         <a href="{{ route('news.show', ['slug' => $article->slug]) }}">
-                            <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="220" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ ucfirst($article->title) }}">
+                            <img class="card-img-top" style="border-top-left-radius: 3px; border-top-right-radius: 3px;" height="250" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ ucfirst($article->title) }}">
                         </a>
                         
                         <div class="card-body">

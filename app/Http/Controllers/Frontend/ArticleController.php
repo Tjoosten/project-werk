@@ -51,7 +51,7 @@ class ArticleController extends Controller
             ->orderBy('created_at', 'desc');
 
         return view('frontend.articles.index', [
-            'articles' => $articles->simplePaginate(10),
+            'articles' => $articles->simplePaginate(6),
             'tags'     => $this->tagRepository->entity()->inRandomOrder()->take(20)->get(),         
         ]);
     }

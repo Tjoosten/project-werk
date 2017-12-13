@@ -39,7 +39,7 @@
                                                 @endif
                                             </td> {{-- /Status --}}
                                             <td>{{ $article->author->name }}</td>
-                                            <td>{{ $article->title }}</td>
+                                            <td><a href="{{ route('news.show', ['slug' => $article->slug]) }}">{{ $article->title }}</a></td>
                                             <td>
                                                 @php (\Carbon\Carbon::setLocale(config('app.locale')))
                                                 {{ $article->created_at->diffForHumans() }}
