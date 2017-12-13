@@ -30,8 +30,7 @@ class CrowdFundController extends Controller
 
     /**
      * Geef de basis informatie view weer voor onze crowdfund. 
-     *
-     * @todo Implementatie backers counter. 
+     * 
      * @todo Implementatie twitter tweet link
      * @todo Implementatie facebook share link.
      * 
@@ -49,7 +48,6 @@ class CrowdFundController extends Controller
     /**
      * Het creatie formulier voor een nieuwe gift. 
      *
-     * @todo Implementatie backers counter. 
      * @todo Implementatie twitter tweet link
      * @todo Implementatie facebook share link.
      *
@@ -68,6 +66,9 @@ class CrowdFundController extends Controller
 
     /**
      * Het bedank bericht voor een gift.
+     * 
+     * @todo De uuid zou moeten vervangen worden in een latere fase door een experation url. 
+     *       Misschien dat UrlSigner package van spatie ons hierbij kan helpen.
      * 
      * @param  $uuid De unieke waarde als controle voor het dankt bericht. 
      * @return \Illuminate\View\View

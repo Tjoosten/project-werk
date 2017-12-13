@@ -45,8 +45,6 @@ class CrowdFundController extends Controller
 
     /**
      * Verwerking en opslag van de gift in ons systeem en dat van Mollie. 
-     *
-     * @todo [Ons systeem]: Het aanmaken van de gebruiker in het systeem.
      * 
      * @param  PaymentValidator $input  De door gebruiker gegeven data. (gavalideerd).
      * @return \Illuminate\Http\RedirectResponse
