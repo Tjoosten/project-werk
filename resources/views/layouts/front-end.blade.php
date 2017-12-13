@@ -178,15 +178,17 @@
                     <hr>
                 </div>
                 <div class="col-md-5">
-                    <form>
+                    <form method="POST" action="{{ route('contact.send') }}">
+                        {{ csrf_field() }} {{-- CSRF form field protection --}}
+
                         <fieldset class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Uw email adres" required>
                         </fieldset>
                         <fieldset class="form-group">
-                            <textarea class="form-control" id="exampleMessage" placeholder="Message"></textarea>
+                            <textarea class="form-control" id="exampleMessage" name="bericht" placeholder="Uw bericht" required></textarea>
                         </fieldset>
                         <fieldset class="form-group text-xs-right">
-                            <button type="button" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-send"></i> Verstuur
                             </button>
                         </fieldset>

@@ -42,6 +42,9 @@ Route::get('ondersteun-ons/gift/bedankt/{uuid}', 'Frontend\CrowdfundController@s
 // gift routes
 Route::post('/gift/opslaan', 'Backend\CrowdfundController@store')->name('gift.save');
 
+// Contact route 
+Route::post('/contact', 'Frontend\ContactController@send')->name('contact.send');
+
 // Bug routes 
 Route::get('/admin/meld-een-probleem', 'Backend\BugController@index')->name('bug.index');
 Route::post('/admin/meld-een-probleem', 'Backend\BugController@store')->name('bug.create');
