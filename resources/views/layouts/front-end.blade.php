@@ -145,27 +145,27 @@
                     </div>
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="" class="social-facebook nav-link pl-0">
+                            <a href="https://www.flickr.com/photos/activisme/" class="social-facebook nav-link pl-0">
                                 <i class="fa fa-facebook fa-lg"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="social-twitter nav-link">
+                            <a href="https://twitter.com/Activisme_be" class="social-twitter nav-link">
                                 <i class="fa fa-twitter fa-lg"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="social-flickr nav-link">
+                            <a href="https://www.flickr.com/photos/activisme/" class="social-flickr nav-link">
                                 <i class="fa fa-flickr fa-lg"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="social-github nav-link">
+                            <a href="https://github.com/CPSB" class="social-github nav-link">
                                 <i class="fa fa-github fa-lg"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="social-contact-footer nav-link">
+                            <a href="mailto:tom@activisme.be" class="social-contact-footer nav-link">
                                 <i class="fa fa-envelope"></i>
                             </a>
                         </li>
