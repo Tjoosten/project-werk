@@ -11,5 +11,5 @@ class Gift extends Model
      *
      * @var array
      */
-    protected $fillable = ['backer_id', 'amount', 'transaction_id', 'status', 'processed'];
+    protected $fillable = ['backer_id', 'amount', 'transaction_id', 'status', 'processed', 'uuid'];
 }

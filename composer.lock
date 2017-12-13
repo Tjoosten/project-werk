@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5df48854ac0845f6f4144bbd12f29a6a",
-    "content-hash": "a3bd7ef02701683c51eef7ecfbf804bd",
+    "hash": "f2b1aafa16c39ad209b5f05d2ea1ef4e",
+    "content-hash": "ee552aff2e59fe94b158547ac8ef298e",
     "packages": [
         {
             "name": "activismebe/database-layering",

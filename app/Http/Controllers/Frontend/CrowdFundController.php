@@ -40,8 +40,8 @@ class CrowdFundController extends Controller
     public function index(): View
     {
         return view('frontend.ondersteuning', [
-            'collected' => $this->giftRepository->entity()->sum('amount'), 
-            'backers'   => $this->giftRepository->entity()->count(),
+            'collected' => $this->giftRepository->entity()->where('status', 'paid')->sum('amount'), 
+            'backers'   => $this->giftRepository->entity()->where('status', 'paid')->count(),
             'social'    => ''
         ]);
     }
@@ -60,8 +60,8 @@ class CrowdFundController extends Controller
     {
         return view('frontend.ondersteuning.create', [
             'plan'      => $this->giftRepository->prefillPlan($plan),
-            'collected' => $this->giftRepository->entity()->sum('amount'), 
-            'backers'   => $this->giftRepository->entity()->count(),
+            'collected' => $this->giftRepository->entity()->where('status', 'paid')->sum('amount'), 
+            'backers'   => $this->giftRepository->entity()->where('status', 'paid')->count(),
             'social'    => ''
         ]);
     }
@@ -69,13 +69,18 @@ class CrowdFundController extends Controller
     /**
      * Het bedank bericht voor een gift.
      * 
-     * @todo docblock 
-     * @todo controller logic.
-     * 
+     * @param  $uuid De unieke waarde als controle voor het dankt bericht. 
      * @return \Illuminate\View\View
      */
-    public function show(): View
+    public function show($uuid): View
     {
-        //        
+        $this->giftRepository->entity()->where('uuid', $uuid)->firstOrFail();
+        flash("Wij hebben je gift goed ontvangen. Bedankt voor het steunen van " . config('app.name') . ".")->success();
+        
+        return view('frontend.ondersteuning', [
+            'collected' => $this->giftRepository->entity()->where('status', 'paid')->sum('amount'), 
+            'backers'   => $this->giftRepository->entity()->where('status', 'paid')->count(),
+            'social'    => ''
+        ]);         
     }
 }
