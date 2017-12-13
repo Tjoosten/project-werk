@@ -15,6 +15,7 @@ class CreateGiftsTable extends Migration
     {
         Schema::create('gifts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('processed')->default('N');
             $table->integer('backer_id'); 
             $table->string('transaction_id');
             $table->string('amount');

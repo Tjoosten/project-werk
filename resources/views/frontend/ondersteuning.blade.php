@@ -11,6 +11,8 @@
     </div>
 
     <div class="container">
+        @include('flash::message')
+        
         <div class="row">
             <div class="col-8"> {{-- Content --}}
                 <div class="mb-4 card br-card card-shadow">

@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \ActivismeBe\Console\Commands\CheckGiftsCommand::class
     ];
 
     /**
@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('activitylog:clean')->daily();
+        $schedule->command('corwdfund:check-payments')->daily();
     }
 
     /**
