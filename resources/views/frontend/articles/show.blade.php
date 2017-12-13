@@ -10,7 +10,7 @@
                     <img class="card-img-top" style="border-top-left-radius: 5px; border-top-right-radius: 5px;" height="250" src="{{ $article->getFirstMediaUrl('images', 'thumb-image') }}" alt="{{ $article->title }}">
                     <div class="card-img-overlay">
                         @if (auth()->check() && auth()->user()->hasRole('admin') && $article->is_published == 'N')
-                            <h3 class="card-title  text-right text-white">
+                            <h3 class="card-title text-right text-white">
                                 <span class="badge badge-warning">Klad versie</span>
                             </h3>
                         @endif
@@ -31,13 +31,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <a class="btn btn-block btn-social btn-facebook">
+                                <a href="{{ $share['facebook'] }}" class="btn btn-block btn-social btn-facebook">
                                     <span class="fa fa-facebook-official text-white"></span>
                                     <center><span class="font-weight-bold text-white text-uppercase">deel</span></center>
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-block btn-social btn-twitter">
+                                <a href="{{ $share['twitter'] }}" class="btn btn-block btn-social btn-twitter">
                                     <span class="fa fa-twitter text-white"></span>
                                     <center><span class="font-weight-bold text-white text-uppercase">tweet</span></center>
                                 </a>

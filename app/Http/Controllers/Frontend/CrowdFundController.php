@@ -2,6 +2,7 @@
 
 namespace ActivismeBe\Http\Controllers\Frontend;
 
+use Share;
 use ActivismeBe\Repositories\GiftRepository;
 use Illuminate\Http\Request;
 use ActivismeBe\Http\Controllers\Controller;
@@ -41,15 +42,12 @@ class CrowdFundController extends Controller
         return view('frontend.ondersteuning', [
             'collected' => $this->giftRepository->entity()->where('status', 'paid')->sum('amount'), 
             'backers'   => $this->giftRepository->entity()->where('status', 'paid')->count(),
-            'social'    => ''
+            'social'    => Share::load(route('ondersteuning.index'), 'Ondersteun Activisme_be')->services('facebook', 'twitter')
         ]);
     }
 
     /**
      * Het creatie formulier voor een nieuwe gift. 
-     *
-     * @todo Implementatie twitter tweet link
-     * @todo Implementatie facebook share link.
      *
      * @param  string $plan De naam van het plan waarin de gebruiker geintresseerd is. 
      * @return \Illuminate\View\View
@@ -60,7 +58,7 @@ class CrowdFundController extends Controller
             'plan'      => $this->giftRepository->prefillPlan($plan),
             'collected' => $this->giftRepository->entity()->where('status', 'paid')->sum('amount'), 
             'backers'   => $this->giftRepository->entity()->where('status', 'paid')->count(),
-            'social'    => ''
+            'social'    => Share::load(route('ondersteuning.index'), 'Ondersteun Activisme_be')->services('facebook', 'twitter')
         ]);
     }
 
@@ -81,7 +79,7 @@ class CrowdFundController extends Controller
         return view('frontend.ondersteuning', [
             'collected' => $this->giftRepository->entity()->where('status', 'paid')->sum('amount'), 
             'backers'   => $this->giftRepository->entity()->where('status', 'paid')->count(),
-            'social'    => ''
+            'social'    => Share::load(route('ondersteuning.index'), 'Ondersteun Activisme_be')->services('facebook', 'twitter')
         ]);         
     }
 }

@@ -82,13 +82,13 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <a class="btn btn-block btn-social btn-facebook">
+                                <a href="{{ $social['facebook'] }}" class="btn btn-block btn-social btn-facebook">
                                     <span class="fa fa-facebook-official text-white"></span>
                                     <center><span class="font-weight-bold text-white text-uppercase">deel</span></center>
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-block btn-social btn-twitter">
+                                <a href="{{ $social['twitter'] }}" class="btn btn-block btn-social btn-twitter">
                                     <span class="fa fa-twitter text-white"></span>
                                     <center><span class="font-weight-bold text-white text-uppercase">tweet</span></center>
                                 </a>
