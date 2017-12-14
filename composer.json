@@ -22,7 +22,8 @@
         "spatie/laravel-activitylog": "^2.3",
         "spatie/laravel-medialibrary": "6.0.0",
         "spatie/laravel-permission": "^2.7",
-        "spatie/laravel-sluggable": "^2.1"
+        "spatie/laravel-sluggable": "^2.1",
+        "spatie/laravel-tail": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
