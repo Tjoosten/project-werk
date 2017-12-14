@@ -66,7 +66,7 @@ class UsersController extends Controller
 
         if ($user = $this->userRepository->create($input->all())) {
             $user->assignRole($input->role);
-            $user->notify((new NewUser($user, $password))->delay(Carbon::now()->addMinute(1)));
+            $user->notify(new NewUser($user, $password));
 
             flash("Er is een login aangemaakt voor {$user->name}")->success();
 
