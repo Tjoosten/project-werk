@@ -83,11 +83,11 @@
                                 <i class="fa fa-sign-in"></i> Login
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('register') }}" class="nav-link @if (Request::is('register*')) active @endif">
-                                <i class="fa fa-user-plus"></i> Registreer
-                            </a>
-                        </li>
+                        {{-- <li class="nav-item"> --}}
+                            {{-- <a href="{{ route('register') }}" class="nav-link @if (Request::is('register*')) active @endif"> --}}
+                                {{-- <i class="fa fa-user-plus"></i> Registreer --}}
+                            {{-- </a> --}}
+                        {{-- </li> --}}
                     @else
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
