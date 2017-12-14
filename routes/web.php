@@ -35,8 +35,8 @@ Route::get('/admin/gebruiker/verwijder/{id}', 'usersController@destroy')->name('
 Route::post('/admin/gebruiker/opslaan', 'usersController@store')->name('admin.users.store');
 
 // Crowdfund routes
-Route::get('ondersteun-ons', 'Frontend\CrowdfundController@index')->name('ondersteuning.index');
-Route::get('ondersteun-ons/{plan}', 'Frontend\CrowdfundController@create')->name('ondersteuning.create');
+Route::get('ondersteun-ons', 'Frontend\CrowdFundController@index')->name('ondersteuning.index');
+Route::get('ondersteun-ons/{plan}', 'Frontend\CrowdFundController@create')->name('ondersteuning.create');
 Route::get('ondersteun-ons/gift/bedankt/{uuid}', 'Frontend\CrowdFundController@show')->name('ondersteuning.bedanking');
 
 // gift routes
