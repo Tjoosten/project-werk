@@ -61,4 +61,4 @@ Route::get('/nieuws', 'Frontend\ArticleController@index')->name('news.index');
 Route::get('/nieuws/{slug}', 'Frontend\ArticleController@show')->name('news.show');
 
 // Article status routes
-Route::get('admin/article/status/{article}/{status}', 'backend\ArticleStatusController@update')->name('admin.status.change');
+Route::get('admin/article/status/{article}/{status}', 'Backend\ArticleStatusController@update')->name('admin.status.change');
