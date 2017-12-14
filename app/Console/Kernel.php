@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('activitylog:clean')->daily();
         $schedule->command('crowdfund:check-payments')->daily();
-        $schedule->command('queue:work')->everyMinute()->withoutOverlapping()->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
+        $schedule->command('queue:work')->everyMinute()->withoutOverlapping();
     }
 
     /**
